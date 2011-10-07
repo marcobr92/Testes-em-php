@@ -1,1 +1,29 @@
-TESTE
+abrir, modificar e imprimir xml com php:
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<mundo>
+ <pais nome="Nederland" continente="North-West Europe" url="nederland.html"/>
+ <pais nome="brasil" continente="America do sul" url="brasil.html"/>
+ <pais nome="Canada" continente="America do norte" url="canada.html"/>
+</mundo>
+
+
+
+<?php
+$sax = simplexml_load_file( 'modificado2.xml' );
+$attr = $sax->pais[ 1 ]->attributes();
+$attr->nome = 'brasil';
+$attr->continente = 'America do sul';
+$attr->url = 'brasil.html';
+
+$attr = $sax->pais[ 2 ]->attributes();
+$attr->nome = 'Canada';
+$attr->continente = 'America do norte';
+$attr->url = 'canada.html';
+
+
+echo $sax->asXML();
+
+//GRAVA NO ARQUIVO EXEMPLO.XML
+file_put_contents('modificado2.xml' , $sax->asXML());
+---------------------------
